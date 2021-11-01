@@ -40,8 +40,8 @@ namespace MathForGames
         public override void Update(float deltaTime, Scene currentScene)
         {
 
-            float xDirection = _target.Postion.X - Postion.X;
-            float yDirection = _target.Postion.Y - Postion.Y;
+            float xDirection = _target.LocalPosition.X - LocalPosition.X;
+            float yDirection = _target.LocalPosition.Y - LocalPosition.Y;
 
             //Create a vector that stores the move input
             Vector2 moveDirection = new Vector2(xDirection, yDirection);
@@ -49,7 +49,7 @@ namespace MathForGames
             Velocity = moveDirection.Normalized * Speed * deltaTime;
 
             if(GetTargetInSight())
-               Postion += Velocity;
+                LocalPosition += Velocity;
 
             base.Update(deltaTime, currentScene);
 
@@ -57,9 +57,9 @@ namespace MathForGames
 
         public bool GetTargetInSight()
         {
-            Vector2 directionOfTarget = (_target.Postion - Postion).Normalized;
+            Vector2 directionOfTarget = (_target.LocalPosition - LocalPosition).Normalized;
 
-            float distance = Vector2.Distance(_target.Postion, Postion);
+            float distance = Vector2.Distance(_target.LocalPosition, LocalPosition);
 
 
             float dotProduct = Vector2.DotProdcut(directionOfTarget, Forward);
