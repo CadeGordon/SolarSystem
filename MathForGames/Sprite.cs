@@ -39,7 +39,7 @@ namespace MathForGames
         /// Draws the sprite using the rotation, translation and scale of the given transform 
         /// </summary>
         /// <param name="transform">The transform of the actor that owns the sprite</param>
-        public void Draw(Matrix3 transform)
+        public void Draw(Matrix4 transform)
         {
             //Find the scale of the sprite
             Width = (int)Math.Round(new Vector2(transform.M00, transform.M10).Magnitude);

@@ -67,7 +67,7 @@ namespace MathForGames
 
             Player player = new Player(4, 1, 100, "player", "images/player.png");
             player.SetScale(50, 50);
-            player.SetRotation(1);
+            
             CircleCollider playercirclecollider = new CircleCollider(25, player);
             AABBCollider playerboxcollider = new AABBCollider(50, 50, player);
             player.Collider = playercirclecollider;
