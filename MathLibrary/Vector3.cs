@@ -8,12 +8,14 @@ namespace MathLibrary
     {
         public float X;
         public float Y;
+        public float Z;
 
 
-        public Vector3(float x, float y)
+        public Vector3(float x, float y, float z)
         {
             X = x;
             Y = y;
+            Z = z;
         }
 
         /// <summary>
@@ -124,7 +126,7 @@ namespace MathLibrary
         /// <returns>true if the x values of both vectors</returns>
         public static bool operator ==(Vector3 lhs, Vector3 rhs)
         {
-            return lhs.X == rhs.X && lhs.Y == rhs.Y;
+            return lhs.X == rhs.X && lhs.Y == rhs.Y && lhs.Z == rhs.Z;
         }
 
         public static bool operator !=(Vector3 lhs, Vector3 rhs)

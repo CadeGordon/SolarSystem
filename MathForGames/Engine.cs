@@ -14,6 +14,7 @@ namespace MathForGames
         private static int _currentSeneIndex;
         private Scene[] _scenes = new Scene[0];
         private Stopwatch _stopwatch = new Stopwatch();
+        private Camera3D _camera = new Camera3D();
         
 
 
@@ -51,6 +52,20 @@ namespace MathForGames
             End();
         }
 
+        private void InitializeCamera()
+        {
+            //Camera position
+            _camera.position = new System.Numerics.Vector3(0, 10, 10);
+            // Point the camera is focus on
+            _camera.target = new System.Numerics.Vector3(0, 0, 0); 
+            // Point the camera is focus on
+            _camera.up = new System.Numerics.Vector3(0, 1, 0); 
+            // Camera field of view
+            _camera.fovy = 45;
+            //Camera mode type
+            _camera.projection = CameraProjection.CAMERA_PERSPECTIVE; 
+        }
+
 
         /// <summary>
         /// Calls when the application starts
@@ -65,32 +80,20 @@ namespace MathForGames
             Raylib.InitWindow(800, 450, "Math For Games");
             Raylib.SetTargetFPS(0);
 
-            Player player = new Player(4, 1, 100, "player", "images/player.png");
-            player.SetScale(50, 50);
+            InitializeCamera();
+
             
+
+            Scene scene = new Scene();
+
+            Player player = new Player(0, 0, 100, "player", Shape.SPHERE);
+            player.SetScale(1, 1, 1);
+
             CircleCollider playercirclecollider = new CircleCollider(25, player);
             AABBCollider playerboxcollider = new AABBCollider(50, 50, player);
             player.Collider = playercirclecollider;
 
-            Scene scene = new Scene();
-
-            Planet ert = new Planet(400, 200, 0, 100, player, "Planet", "Images/ert.png");
-            ert.SetScale(50, 50);
-            scene.AddActor(ert);
-
-            Planet blue = new Planet(2f, 3f, 0, 100, player, "bullet Planet", "Images/blue.png");
-            blue.SetScale(1f, 1f);
-            ert.AddChild(blue);
-
-            scene.AddActor(blue);
-
-            Planet rock = new Planet(1f, 1f, 0, 50, player, "Enemey Planet", "Images/rock.png");
-            rock.SetScale(0.8f, 0.8f);
-            blue.AddChild(rock);
-
-            scene.AddActor(rock);
-
-            
+            scene.AddActor(player);
 
             //Enemy enemy = new Enemy(300, 300, 100, 50, player, "Enemy", "Images/enemy.png");
             //enemy.SetScale(50, 50);
@@ -99,33 +102,22 @@ namespace MathForGames
             //enemy.LookAt(new Vector2(4, 1));
             //enemy.Forward = new Vector2(4, 1);
 
-            //Enemy enemy2 = new Enemy(400, 400, 100, 50, player, "Enemy", "Images/enemy.png");
-            //enemy2.SetScale(50, 50);
-            //CircleCollider enemy2CircleCollider = new CircleCollider(10, enemy2);
-            //AABBCollider enemy2BoxCollider = new AABBCollider(50, 50, enemy2);
-            //enemy2.Collider = enemy2BoxCollider;
 
-            //Enemy enemy3 = new Enemy(150, 150, 100, 50, player, "Enemy", "Images/enemy.png");
-            //enemy3.SetScale(50, 50);
-            //CircleCollider enemy3CircleCollider = new CircleCollider(10, enemy3);
-            //AABBCollider enemy3BoxCollider = new AABBCollider(50, 50, enemy3);
-            //enemy3.Collider = enemy3BoxCollider;
 
 
 
             //UIText text = new UIText(10, 10, "TestBox", Color.LIME, 70, 70, 15, "This is the test text \n it is not to be taken seriously");
 
             //scene.AddActor(text);
-            scene.AddActor(player);
+            
             //scene.AddActor(enemy);
-            //scene.AddActor(enemy2);
-            //scene.AddActor(enemy3);
+            
 
 
 
             _currentSeneIndex = AddScene(scene);
 
-            _scenes[_currentSeneIndex].Start();
+           
 
             Console.CursorVisible = false;
         }
@@ -148,11 +140,15 @@ namespace MathForGames
         {
             
             Raylib.BeginDrawing();
-            Raylib.ClearBackground(Color.BLACK);
+            Raylib.BeginMode3D(_camera);
+
+            Raylib.ClearBackground(Color.RAYWHITE);
+            Raylib.DrawGrid(50, 1);
 
             //Adds all actor icons to buffer
             _scenes[_currentSeneIndex].Draw();
 
+            Raylib.EndMode3D();
             Raylib.EndDrawing();
         }
 

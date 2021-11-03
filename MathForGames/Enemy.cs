@@ -8,7 +8,7 @@ namespace MathForGames
 {
     class Enemy : Actor
     {
-        private Vector2 _velocity;
+        private Vector3 _velocity;
         private float _speed;
         public Actor _target;
         private float _viewDistance;
@@ -23,14 +23,14 @@ namespace MathForGames
             set { _speed = value; }
         }
 
-        public Vector2 Velocity
+        public Vector3 Velocity
         {
             get { return _velocity; }
             set { _velocity = value; }
         }
 
-        public Enemy( float x, float y, float viewDistance, float speed, Actor actor, string name = "Actor", string path = "")
-            : base(x, y, name, path)
+        public Enemy( float x, float y, float viewDistance, float speed, Actor actor, string name = "Actor", Shape shape = Shape.CUBE)
+            : base(x, y, name, shape)
         {
             _target = actor;
             _speed = speed;
@@ -42,9 +42,11 @@ namespace MathForGames
 
             float xDirection = _target.LocalPosition.X - LocalPosition.X;
             float yDirection = _target.LocalPosition.Y - LocalPosition.Y;
+            float zDirection = _target.LocalPosition.Z - LocalPosition.Z;
+
 
             //Create a vector that stores the move input
-            Vector2 moveDirection = new Vector2(xDirection, yDirection);
+            Vector3 moveDirection = new Vector3(xDirection, yDirection, zDirection);
 
             Velocity = moveDirection.Normalized * Speed * deltaTime;
 
@@ -57,14 +59,14 @@ namespace MathForGames
 
         public bool GetTargetInSight()
         {
-            Vector2 directionOfTarget = (_target.LocalPosition - LocalPosition).Normalized;
+            Vector3 directionOfTarget = (_target.LocalPosition - LocalPosition).Normalized;
 
-            float distance = Vector2.Distance(_target.LocalPosition, LocalPosition);
+            float distance = Vector3.Distance(_target.LocalPosition, LocalPosition);
 
 
-            float dotProduct = Vector2.DotProdcut(directionOfTarget, Forward);
+            float dotProduct = Vector3.DotProdcut(directionOfTarget, Forward);
 
-            return Vector2.DotProdcut(directionOfTarget, Forward) > 0.5 && distance < _viewDistance;
+            return Vector3.DotProdcut(directionOfTarget, Forward) > 0.5 && distance < _viewDistance;
         }
 
         public override void OnCollision(Actor actor, Scene currentScene)
