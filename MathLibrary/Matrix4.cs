@@ -65,18 +65,18 @@ namespace MathLibrary
                                0, y, 0,
                                0, 0, 1);
         }
-        
+
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
         {
-            return new Matrix3  (lhs.M00 + rhs.M00, lhs.M01 + rhs.M01, lhs.M02 + rhs.M02,
+            return new Matrix3(lhs.M00 + rhs.M00, lhs.M01 + rhs.M01, lhs.M02 + rhs.M02,
                                  lhs.M10 + rhs.M10, lhs.M11 + rhs.M11, lhs.M12 + rhs.M12,
                                  lhs.M20 + rhs.M20, lhs.M21 + rhs.M21, lhs.M22 + rhs.M22);
-             
+
         }
 
         public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
         {
-            return new Matrix3 (lhs.M00 - rhs.M00, lhs.M01 - rhs.M01, lhs.M02 - rhs.M02,
+            return new Matrix3(lhs.M00 - rhs.M00, lhs.M01 - rhs.M01, lhs.M02 - rhs.M02,
                                  lhs.M10 - rhs.M10, lhs.M11 - rhs.M11, lhs.M12 - rhs.M12,
                                  lhs.M20 - rhs.M20, lhs.M21 - rhs.M21, lhs.M22 - rhs.M22);
         }
