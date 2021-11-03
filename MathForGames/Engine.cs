@@ -65,49 +65,63 @@ namespace MathForGames
             Raylib.InitWindow(800, 450, "Math For Games");
             Raylib.SetTargetFPS(0);
 
+            Player player = new Player(4, 1, 100, "player", "images/player.png");
+            player.SetScale(50, 50);
+            player.SetRotation(1);
+            CircleCollider playercirclecollider = new CircleCollider(25, player);
+            AABBCollider playerboxcollider = new AABBCollider(50, 50, player);
+            player.Collider = playercirclecollider;
 
             Scene scene = new Scene();
 
+            Planet ert = new Planet(400, 200, 0, 100, player, "Planet", "Images/ert.png");
+            ert.SetScale(50, 50);
+            scene.AddActor(ert);
+
+            Planet blue = new Planet(2f, 3f, 0, 100, player, "bullet Planet", "Images/blue.png");
+            blue.SetScale(1f, 1f);
+            ert.AddChild(blue);
+
+            scene.AddActor(blue);
+
+            Planet rock = new Planet(1f, 1f, 0, 50, player, "Enemey Planet", "Images/rock.png");
+            rock.SetScale(0.8f, 0.8f);
+            blue.AddChild(rock);
+
+            scene.AddActor(rock);
+
             
-            
-            Player player = new Player( 4, 1, 100, "Player", "Images/player.png");
-            player.SetScale(50, 50);
-            player.SetRotation(1);
-            CircleCollider playerCircleCollider = new CircleCollider(25, player);
-            AABBCollider playerBoxCollider = new AABBCollider(50, 50, player);
-            player.Collider = playerCircleCollider;
 
-            Enemy enemy = new Enemy( 300, 300, 100, 50, player, "Enemy", "Images/enemy.png");
-            enemy.SetScale(50, 50);
-            CircleCollider enemyCircleCollider = new CircleCollider(10, enemy);
-            AABBCollider enemyBoxCollider = new AABBCollider(50, 50, enemy);
-            enemy.Collider = enemyBoxCollider;
-            enemy.LookAt(new Vector2(4, 1));
-            enemy.Forward = new Vector2(4, 1);
+            //Enemy enemy = new Enemy(300, 300, 100, 50, player, "Enemy", "Images/enemy.png");
+            //enemy.SetScale(50, 50);
+            //CircleCollider enemyCircleCollider = new CircleCollider(10, enemy);
+            //AABBCollider enemymyBoxCollider;
+            //enemy.LookAt(new Vector2(4, 1));
+            //enemy.Forward = new Vector2(4, 1);
 
-            Enemy enemy2 = new Enemy(400, 400, 100, 50, player, "Enemy", "Images/enemy.png");
-            enemy2.SetScale(50, 50);
-            CircleCollider enemy2CircleCollider = new CircleCollider(10, enemy2);
-            AABBCollider enemy2BoxCollider = new AABBCollider(50, 50, enemy2);
-            enemy2.Collider = enemy2BoxCollider;
+            //Enemy enemy2 = new Enemy(400, 400, 100, 50, player, "Enemy", "Images/enemy.png");
+            //enemy2.SetScale(50, 50);
+            //CircleCollider enemy2CircleCollider = new CircleCollider(10, enemy2);
+            //AABBCollider enemy2BoxCollider = new AABBCollider(50, 50, enemy2);
+            //enemy2.Collider = enemy2BoxCollider;
 
-            Enemy enemy3 = new Enemy(150, 150, 100, 50, player, "Enemy", "Images/enemy.png");
-            enemy3.SetScale(50, 50);
-            CircleCollider enemy3CircleCollider = new CircleCollider(10, enemy3);
-            AABBCollider enemy3BoxCollider = new AABBCollider(50, 50, enemy3);
-            enemy3.Collider = enemy3BoxCollider;
+            //Enemy enemy3 = new Enemy(150, 150, 100, 50, player, "Enemy", "Images/enemy.png");
+            //enemy3.SetScale(50, 50);
+            //CircleCollider enemy3CircleCollider = new CircleCollider(10, enemy3);
+            //AABBCollider enemy3BoxCollider = new AABBCollider(50, 50, enemy3);
+            //enemy3.Collider = enemy3BoxCollider;
 
 
 
-            UIText text = new UIText(10, 10, "TestBox", Color.LIME, 70, 70, 15, "This is the test text \n it is not to be taken seriously");
+            //UIText text = new UIText(10, 10, "TestBox", Color.LIME, 70, 70, 15, "This is the test text \n it is not to be taken seriously");
 
-            scene.AddActor(text);
+            //scene.AddActor(text);
             scene.AddActor(player);
-            scene.AddActor(enemy);
-            scene.AddActor(enemy2);
-            scene.AddActor(enemy3);
+            //scene.AddActor(enemy);
+            //scene.AddActor(enemy2);
+            //scene.AddActor(enemy3);
 
-            
+
 
             _currentSeneIndex = AddScene(scene);
 

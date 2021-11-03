@@ -46,8 +46,7 @@ namespace MathForGames
             else
                 GlobalTransform = LocalTransform;
 
-            foreach (Actor child in _children)
-                child.UpdateTransform();
+            
         }
 
         public void AddChild(Actor child)
@@ -64,7 +63,8 @@ namespace MathForGames
             
             tempArray[_children.Length] = child;
 
-            
+            child.Parent = this;
+
             _children = tempArray;
         }
 
@@ -103,7 +103,11 @@ namespace MathForGames
 
         public Vector2 WorldPosition
         {
-            get; private set;
+            get { return new Vector2(_globalTransform.M02, _globalTransform.M12); }
+            set
+            {
+                SetTranslation(value.Y, value.X);
+            }
         }
 
         public Matrix3 GlobalTransform
@@ -187,15 +191,18 @@ namespace MathForGames
 
         public virtual void Update(float deltaTime, Scene currentScene)
         {
+            Rotate(2 * deltaTime);
+
             _localTransform = _translation * _rotation * _scale;
             Console.WriteLine(_name + ": " + LocalPosition.X + ", " + LocalPosition.Y);
+            UpdateTransform();
 
         }
 
         public virtual void Draw()
         {
             if (_sprite != null)
-                _sprite.Draw(_localTransform);
+                _sprite.Draw(GlobalTransform);
         }
 
         public void End()

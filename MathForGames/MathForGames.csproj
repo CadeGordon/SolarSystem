@@ -8,17 +8,33 @@
   <ItemGroup>
     <None Remove="bullet.png" />
     <None Remove="enemy.png" />
+    <None Remove="Images\blue.png" />
+    <None Remove="Images\ert.png" />
+    <None Remove="Images\rock.png" />
+    <None Remove="Images\scorched.png" />
     <None Remove="player.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Images\blue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\bullet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\enemy.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\ert.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\player.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\rock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\scorched.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
