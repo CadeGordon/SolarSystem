@@ -15,6 +15,7 @@ namespace MathForGames
         private Scene[] _scenes = new Scene[0];
         private Stopwatch _stopwatch = new Stopwatch();
         private Camera3D _camera = new Camera3D();
+        Player _player;
         
 
 
@@ -88,6 +89,7 @@ namespace MathForGames
 
             Player player = new Player(0, 0, 0, 100, "player", Shape.SPHERE);
             player.SetScale(1, 1, 1);
+            _player = player;
 
             CircleCollider playercirclecollider = new CircleCollider(25, player);
             AABBCollider playerboxcollider = new AABBCollider(50, 50, player);
@@ -129,6 +131,8 @@ namespace MathForGames
         {
             _scenes[_currentSeneIndex].Update(deltaTime, _scenes[_currentSeneIndex]);
 
+            _camera.target = new System.Numerics.Vector3(_player.WorldPosition.X, _player.WorldPosition.Y, _player.WorldPosition.Z);
+            _camera.position = new System.Numerics.Vector3(_player.WorldPosition.X, _player.WorldPosition.Y + 2, _player.WorldPosition.Z + 10);
             while (Console.KeyAvailable)
                 Console.ReadKey(true);
         }
