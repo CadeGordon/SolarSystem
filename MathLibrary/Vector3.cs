@@ -25,7 +25,7 @@ namespace MathLibrary
         {
             get
             {
-                return (float)Math.Sqrt(X * X + Y * Y);
+                return (float)Math.Sqrt(X * X + Y * Y + Z * Z);
             }
         }
 
@@ -59,7 +59,7 @@ namespace MathLibrary
         /// <returns>The dot product of this first vector on to the second</returns>
         public static float DotProdcut(Vector3 lhs, Vector3 rhs)
         {
-            return (lhs.X * rhs.X) + (lhs.Y * rhs.Y);
+            return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace MathLibrary
         /// <returns>The resuly of the vector addition</returns>
         public static Vector3 operator +(Vector3 lhs, Vector3 rhs)
         {
-            return new Vector3 { X = lhs.X + rhs.X, Y = lhs.Y + rhs.Y };
+            return new Vector3 { X = lhs.X + rhs.X, Y = lhs.Y + rhs.Y, Z = lhs.Z + rhs.Z };
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace MathLibrary
         /// <returns>The resuly of the vector subtraction</returns>
         public static Vector3 operator -(Vector3 lhs, Vector3 rhs)
         {
-            return new Vector3 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y };
+            return new Vector3 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y, Z = lhs.Z - rhs.Z };
         }
 
 
@@ -104,7 +104,7 @@ namespace MathLibrary
         /// <returns>The result of the vector scaling</returns>
         public static Vector3 operator *(Vector3 lhs, float rhs)
         {
-            return new Vector3 { X = lhs.X * rhs, Y = lhs.Y * rhs };
+            return new Vector3 { X = lhs.X * rhs, Y = lhs.Y * rhs, Z = lhs.Z * rhs };
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace MathLibrary
         /// <returns>The result of the vector scaling</returns>
         public static Vector3 operator /(Vector3 lhs, float rhs)
         {
-            return new Vector3 { X = lhs.X / rhs, Y = lhs.Y / rhs };
+            return new Vector3 { X = lhs.X / rhs, Y = lhs.Y / rhs, Z = lhs.Z / rhs };
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace MathLibrary
 
         public static bool operator !=(Vector3 lhs, Vector3 rhs)
         {
-            return lhs.X != rhs.X && lhs.Y != rhs.Y;
+            return lhs.X != rhs.X && lhs.Y != rhs.Y && lhs.Z != rhs.Z;
         }
 
 

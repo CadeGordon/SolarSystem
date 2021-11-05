@@ -39,7 +39,7 @@ namespace MathForGames
 
         public Vector3 LocalPosition
         {
-            get { return new Vector3(_translation.M02, _translation.M12,_translation.M23); }
+            get { return new Vector3(_translation.M03, _translation.M13,_translation.M23); }
             set 
             {
                 SetTranslation(value.X, value.Y, value.Z);
@@ -174,8 +174,8 @@ namespace MathForGames
 
         
 
-        public Actor( float x, float y, string name = "Actor", Shape shape = Shape.CUBE ) :
-            this( new Vector3 { X = x, Y = y }, name, shape)
+        public Actor( float x, float y, float z, string name = "Actor", Shape shape = Shape.CUBE ) :
+            this( new Vector3 { X = x, Y = y, Z = z }, name, shape)
         { }
         
         
@@ -216,9 +216,9 @@ namespace MathForGames
         {
             //Rotate(2 * deltaTime);
 
-            //_localTransform = _translation * _rotation * _scale;
-            //Console.WriteLine(_name + ": " + LocalPosition.X + ", " + LocalPosition.Y);
-            //UpdateTransform();
+            _localTransform = _translation * _rotation * _scale;
+            Console.WriteLine(_name + ": " + LocalPosition.X + ", " + LocalPosition.Y);
+            UpdateTransform();
 
         }
 

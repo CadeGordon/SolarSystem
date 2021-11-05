@@ -24,12 +24,13 @@ namespace MathForGames
             set { _velocity = value; }
         }
 
-        public Bullet(float x, float y, float velocityX, float velocityY, float speed, string name = "Actor", Shape shape = Shape.SPHERE)
-            : base(x, y, name, shape)
+        public Bullet(float x, float y, float z, float velocityX, float velocityY, float velocityZ, float speed, string name = "Actor", Shape shape = Shape.SPHERE)
+            : base(x, y, z, name, shape)
         {
             _speed = speed;
             _velocity.X = velocityX;
             _velocity.Y = velocityY;
+            _velocity.Z = velocityZ;
         }
 
         public override void Update(float deltaTime, Scene currentScene)

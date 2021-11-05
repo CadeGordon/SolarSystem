@@ -86,7 +86,7 @@ namespace MathForGames
 
             Scene scene = new Scene();
 
-            Player player = new Player(0, 0, 100, "player", Shape.SPHERE);
+            Player player = new Player(0, 0, 0, 100, "player", Shape.SPHERE);
             player.SetScale(1, 1, 1);
 
             CircleCollider playercirclecollider = new CircleCollider(25, player);

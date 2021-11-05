@@ -6,10 +6,12 @@ using Raylib_cs;
 
 namespace MathForGames
 {
+
     class Player : Actor
     {
         private Vector3 _velocity;
         private float _speed;
+        
 
         public float Speed
         {
@@ -23,8 +25,8 @@ namespace MathForGames
             set { _velocity = value; }
         }
 
-        public Player( float x, float y, float speed, string name = "Actor", Shape shape = Shape.CUBE) 
-            : base(x, y, name, shape)
+        public Player( float x, float y, float z, float speed, string name = "Actor", Shape shape = Shape.CUBE) 
+            : base(x, y, z, name, shape)
         {
             _speed = speed;
         }
@@ -35,12 +37,12 @@ namespace MathForGames
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
 
             int zDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
-                + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
+               + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
             //if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_UP)))
             //{
-            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, 0, -1, 100, "Bullet", "Images/bullet.png");
-            //    bullet.SetScale(50, 50);
+            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, LocalPosition.Z, 0, 0, 0, 100, "Bullet", "Images/bullet.png");
+            //    bullet.SetScale(50, 50, 50);
             //    currentScene.AddActor(bullet);
             //    CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
             //    AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
@@ -50,8 +52,8 @@ namespace MathForGames
 
             //if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_DOWN)))
             //{
-            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, 0, 1, 100, "Bullet", "Images/bullet.png");
-            //    bullet.SetScale(50, 50);
+            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, LocalPosition.Z,0, 0, 0, 100, "Bullet", "Images/bullet.png");
+            //    bullet.SetScale(50, 50, 50);
             //    currentScene.AddActor(bullet);
             //    CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
             //    AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
@@ -61,8 +63,8 @@ namespace MathForGames
 
             //if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_LEFT)))
             //{
-            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, -1, 0, 100, "Bullet", "Images/bullet.png");
-            //    bullet.SetScale(50, 50);
+            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, LocalPosition.Z, 0, 0, 0, 100, "Bullet", Shape _shape = Shape.CUBE);
+            //    bullet.SetScale(50, 50, 50);
             //    currentScene.AddActor(bullet);
             //    CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
             //    AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
@@ -72,8 +74,8 @@ namespace MathForGames
 
             //if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_RIGHT)))
             //{
-            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, 1, 0, 100, "Bullet", "Images/bullet.png");
-            //    bullet.SetScale(50, 50);
+            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, LocalPosition.Z, 0, 0, 0, 100, "Bullet", "Images/bullet.png");
+            //    bullet.SetScale(50, 50, 50);
             //    currentScene.AddActor(bullet);
             //    CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
             //    AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
@@ -96,7 +98,7 @@ namespace MathForGames
             //if(Velocity.Magnitude > 0)
             //Forward = Velocity.Normalized;
 
-            LocalPosition += Velocity;
+            Translate(_velocity.X, 0, _velocity.Z);
 
             base.Update(deltaTime, currentScene);
             
