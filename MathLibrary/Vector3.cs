@@ -57,7 +57,7 @@ namespace MathLibrary
         /// <param name="lhs">The left hand side of the operation</param>
         /// <param name="rhs">the right hang side of the operation</param>
         /// <returns>The dot product of this first vector on to the second</returns>
-        public static float DotProdcut(Vector3 lhs, Vector3 rhs)
+        public static float DotProduct(Vector3 lhs, Vector3 rhs)
         {
             return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z);
         }
@@ -110,6 +110,11 @@ namespace MathLibrary
         /// <param name="rhs">The value to scale the vector by</param>
         /// <returns>The result of the vector scaling</returns>
         public static Vector3 operator *(Vector3 lhs, float rhs)
+        {
+            return new Vector3 { X = lhs.X * rhs, Y = lhs.Y * rhs, Z = lhs.Z * rhs };
+        }
+
+        public static Vector3 operator *(float rhs, Vector3 lhs)
         {
             return new Vector3 { X = lhs.X * rhs, Y = lhs.Y * rhs, Z = lhs.Z * rhs };
         }

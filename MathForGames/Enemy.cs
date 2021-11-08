@@ -64,9 +64,9 @@ namespace MathForGames
             float distance = Vector3.Distance(_target.LocalPosition, LocalPosition);
 
 
-            float dotProduct = Vector3.DotProdcut(directionOfTarget, Forward);
+            float dotProduct = Vector3.DotProduct(directionOfTarget, Forward);
 
-            return Vector3.DotProdcut(directionOfTarget, Forward) > 0.5 && distance < _viewDistance;
+            return Vector3.DotProduct(directionOfTarget, Forward) > 0.5 && distance < _viewDistance;
         }
 
         public override void OnCollision(Actor actor, Scene currentScene)

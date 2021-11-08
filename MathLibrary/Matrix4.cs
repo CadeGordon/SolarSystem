@@ -103,9 +103,9 @@ namespace MathLibrary
         public static Matrix4 operator -(Matrix4 lhs, Matrix4 rhs)
         {
             return new Matrix4((lhs.M00 - rhs.M00), (lhs.M01 - rhs.M01), (lhs.M02 - rhs.M02), (lhs.M03 - rhs.M03),
-                (lhs.M10 - rhs.M10), (lhs.M11 - rhs.M11), (lhs.M12 - rhs.M12), (lhs.M13 - rhs.M13),
-                (lhs.M20 - rhs.M20), (lhs.M21 - rhs.M21), (lhs.M22 - rhs.M22), (lhs.M23 - rhs.M23),
-                (lhs.M30 - rhs.M30), (lhs.M31 - rhs.M31), (lhs.M32 - rhs.M32), (lhs.M33 - rhs.M33)
+                              (lhs.M10 - rhs.M10), (lhs.M11 - rhs.M11), (lhs.M12 - rhs.M12), (lhs.M13 - rhs.M13),
+                              (lhs.M20 - rhs.M20), (lhs.M21 - rhs.M21), (lhs.M22 - rhs.M22), (lhs.M23 - rhs.M23),
+                              (lhs.M30 - rhs.M30), (lhs.M31 - rhs.M31), (lhs.M32 - rhs.M32), (lhs.M33 - rhs.M33)
                 );
         }
 
@@ -155,7 +155,10 @@ namespace MathLibrary
 
         public static Vector4 operator *(Matrix4 lhs, Vector4 rhs)
         {
-            return new Vector4();
+            return new Vector4((lhs.M00 * rhs.X) + (lhs.M01 * rhs.Y) + (lhs.M02 * rhs.Z) + (lhs.M03 * rhs.W),
+                               (lhs.M10 * rhs.X) + (lhs.M11 * rhs.Y) + (lhs.M12 * rhs.Z) + (lhs.M13 * rhs.W),
+                               (lhs.M20 * rhs.X) + (lhs.M21 * rhs.Y) + (lhs.M22 * rhs.Z) + (lhs.M23 * rhs.W),
+                               (lhs.M30 * rhs.X) + (lhs.M31 * rhs.Y) + (lhs.M32 * rhs.Z) + (lhs.M33 * rhs.W));
         }
 
     }
