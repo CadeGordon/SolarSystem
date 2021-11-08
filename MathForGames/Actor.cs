@@ -28,6 +28,12 @@ namespace MathForGames
         private Actor _parent;
         private Sprite _sprite;
         private Shape _shape;
+        private Color _color;
+
+        public Color ShapeColor
+        {
+            get { return _color; }
+        }
 
         /// <summary>
         /// True if the start function has been called for this actor
@@ -224,7 +230,9 @@ namespace MathForGames
 
         public virtual void Draw()
         {
-            System.Numerics.Vector3 position = new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y, WorldPosition.Z);
+            System.Numerics.Vector3 startPos = new System.Numerics.Vector3(WorldPosition.X, WorldPosition.Y, WorldPosition.Z);
+            System.Numerics.Vector3 endPos = new System.Numerics.Vector3(WorldPosition.X + Forward.X * 50, WorldPosition.Y + Forward.Y * 50, WorldPosition.Z + Forward.Z * 50);
+
 
             switch (_shape) 
             {
@@ -232,18 +240,18 @@ namespace MathForGames
                     float sizeX = new Vector3(GlobalTransform.M00, GlobalTransform.M10, GlobalTransform.M20).Magnitude;
                     float sizeY = new Vector3(GlobalTransform.M01, GlobalTransform.M11, GlobalTransform.M21).Magnitude;
                     float sizeZ = new Vector3(GlobalTransform.M02, GlobalTransform.M12, GlobalTransform.M22).Magnitude;
-                    Raylib.DrawCube(position, sizeX, sizeY, sizeZ, Color.PINK);
+                    Raylib.DrawCube(startPos, sizeX, sizeY, sizeZ, ShapeColor);
                     break;
                 case Shape.SPHERE:
                     sizeX = new Vector3(GlobalTransform.M00, GlobalTransform.M10, GlobalTransform.M20).Magnitude;
-                    Raylib.DrawSphere(position, sizeX, Color.PURPLE);
+                    Raylib.DrawSphere(endPos, sizeX, ShapeColor);
                     break;
 
-                //case Shape.CUBE:
-                  //  Raylib.DrawCube(position, Size.X, Size.Y, Size.Z, Color.BLUE);
-                    //break;
+                
 
             }
+            
+                Raylib.DrawLine3D(startPos, endPos, Color.RED);
 
         }
 
@@ -393,10 +401,17 @@ namespace MathForGames
                                     newXAxis.Y, newYAxis.Y, direction.Z, 0,
                                     newXAxis.Z, newYAxis.Z, direction.Z, 0,
                                     0, 0, 0, 1);
-            
+        }
 
-            
+        public void SetColor(Color color)
+        {
+            _color = color;
+        }
 
+        //Can modify the color value of red, green, blue and transparency
+        public void SetColor(Vector4 colorValue)
+        {
+            _color = new Color((int)colorValue.X, (int)colorValue.Y, (int)colorValue.Z, (int)colorValue.W);
         }
     }
 }

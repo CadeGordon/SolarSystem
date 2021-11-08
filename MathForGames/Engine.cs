@@ -89,6 +89,7 @@ namespace MathForGames
 
             Player player = new Player(0, 0, 0, 100, "player", Shape.SPHERE);
             player.SetScale(1, 1, 1);
+            player.SetColor(new Vector4(12, 65, 7, 220));
             _player = player;
 
             CircleCollider playercirclecollider = new CircleCollider(25, player);
@@ -97,12 +98,11 @@ namespace MathForGames
 
             scene.AddActor(player);
 
-            //Enemy enemy = new Enemy(300, 300, 100, 50, player, "Enemy", "Images/enemy.png");
-            //enemy.SetScale(50, 50);
-            //CircleCollider enemyCircleCollider = new CircleCollider(10, enemy);
-            //AABBCollider enemymyBoxCollider;
-            //enemy.LookAt(new Vector2(4, 1));
-            //enemy.Forward = new Vector2(4, 1);
+            Enemy enemy = new Enemy(0, 0, 0, 50, 50, player, "Enemy", Shape.CUBE);
+            enemy.SetScale(1, 1, 1);
+            CircleCollider enemyCircleCollider = new CircleCollider(10, enemy);
+            AABBCollider enemymyBoxCollider;
+            
 
 
 
@@ -112,7 +112,7 @@ namespace MathForGames
 
             //scene.AddActor(text);
             
-            //scene.AddActor(enemy);
+            scene.AddActor(enemy);
             
 
 
@@ -131,6 +131,7 @@ namespace MathForGames
         {
             _scenes[_currentSeneIndex].Update(deltaTime, _scenes[_currentSeneIndex]);
 
+            //change the prespective of the camera (example first person)
             _camera.target = new System.Numerics.Vector3(_player.WorldPosition.X, _player.WorldPosition.Y, _player.WorldPosition.Z);
             _camera.position = new System.Numerics.Vector3(_player.WorldPosition.X, _player.WorldPosition.Y + 2, _player.WorldPosition.Z + 10);
             while (Console.KeyAvailable)

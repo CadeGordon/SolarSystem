@@ -27,7 +27,7 @@ namespace MathLibrary
         {
             get
             {
-                return (float)Math.Sqrt(X * X + Y * Y);
+                return (float)Math.Sqrt(X * X + Y * Y + Z * Z + W * W);
             }
         }
 
@@ -61,7 +61,7 @@ namespace MathLibrary
         /// <returns>The dot product of this first vector on to the second</returns>
         public static float DotProdcut(Vector4 lhs, Vector4 rhs)
         {
-            return (lhs.X * rhs.X) + (lhs.Y * rhs.Y);
+            return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z) + (lhs.W * rhs.W);
         }
 
         public static Vector4 CrossProduct(Vector4 lhs, Vector4 rhs)
@@ -90,7 +90,7 @@ namespace MathLibrary
         /// <returns>The resuly of the vector addition</returns>
         public static Vector4 operator +(Vector4 lhs, Vector4 rhs)
         {
-            return new Vector4 { X = lhs.X + rhs.X, Y = lhs.Y + rhs.Y };
+            return new Vector4 { X = lhs.X + rhs.X, Y = lhs.Y + rhs.Y, Z = lhs.Z + rhs.Z, W = lhs.W + rhs.W};
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace MathLibrary
         /// <returns>The resuly of the vector subtraction</returns>
         public static Vector4 operator -(Vector4 lhs, Vector4 rhs)
         {
-            return new Vector4 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y };
+            return new Vector4 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y, Z = lhs.Z - rhs.Z, W = lhs.W - rhs.W };
         }
 
 
@@ -113,7 +113,7 @@ namespace MathLibrary
         /// <returns>The result of the vector scaling</returns>
         public static Vector4 operator *(Vector4 lhs, float rhs)
         {
-            return new Vector4 { X = lhs.X * rhs, Y = lhs.Y * rhs };
+            return new Vector4 { X = lhs.X * rhs, Y = lhs.Y * rhs, Z = lhs.Z * rhs, W = lhs.W * rhs };
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace MathLibrary
         /// <returns>The result of the vector scaling</returns>
         public static Vector4 operator /(Vector4 lhs, float rhs)
         {
-            return new Vector4 { X = lhs.X / rhs, Y = lhs.Y / rhs };
+            return new Vector4 { X = lhs.X / rhs, Y = lhs.Y / rhs, Z = lhs.Z / rhs, W = lhs.W / rhs };
         }
 
         /// <summary>
@@ -135,12 +135,12 @@ namespace MathLibrary
         /// <returns>true if the x values of both vectors</returns>
         public static bool operator ==(Vector4 lhs, Vector4 rhs)
         {
-            return lhs.X == rhs.X && lhs.Y == rhs.Y;
+            return lhs.X == rhs.X && lhs.Y == rhs.Y && lhs.Z == rhs.Z && lhs.W == rhs.W;
         }
 
         public static bool operator !=(Vector4 lhs, Vector4 rhs)
         {
-            return lhs.X != rhs.X && lhs.Y != rhs.Y;
+            return lhs.X != rhs.X && lhs.Y != rhs.Y && lhs.Z != rhs.Z && lhs.W != rhs.W;
         }
 
 
