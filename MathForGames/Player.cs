@@ -41,45 +41,45 @@ namespace MathForGames
 
             //if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_UP)))
             //{
-            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, LocalPosition.Z, 0, 0, 0, 100, "Bullet", "Images/bullet.png");
+            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, LocalPosition.Z, 0, 0, 0, 100, "Bullet", Shape.SPHERE);
             //    bullet.SetScale(50, 50, 50);
             //    currentScene.AddActor(bullet);
-            //    CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
-            //    AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
-            //    bullet.Collider = bulletBoxCollider;
+            //    //CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
+            //    //AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
+            //    //bullet.Collider = bulletBoxCollider;
 
             //}
 
             //if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_DOWN)))
             //{
-            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, LocalPosition.Z,0, 0, 0, 100, "Bullet", "Images/bullet.png");
+            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, LocalPosition.Z, 0, 0, 0, 100, "Bullet", Shape.CUBE);
             //    bullet.SetScale(50, 50, 50);
             //    currentScene.AddActor(bullet);
-            //    CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
-            //    AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
-            //    bullet.Collider = bulletBoxCollider;
+            //    //CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
+            //    //AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
+            //    //bullet.Collider = bulletBoxCollider;
 
             //}
 
             //if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_LEFT)))
             //{
-            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, LocalPosition.Z, 0, 0, 0, 100, "Bullet", Shape _shape = Shape.CUBE);
+            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, LocalPosition.Z, 0, 0, 0, 100, "Bullet", Shape.CUBE);
             //    bullet.SetScale(50, 50, 50);
             //    currentScene.AddActor(bullet);
-            //    CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
-            //    AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
-            //    bullet.Collider = bulletBoxCollider;
+            //    //CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
+            //    //AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
+            //    //bullet.Collider = bulletBoxCollider;
 
             //}
 
             //if (Convert.ToBoolean(Raylib.IsKeyPressed(KeyboardKey.KEY_RIGHT)))
             //{
-            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, LocalPosition.Z, 0, 0, 0, 100, "Bullet", "Images/bullet.png");
+            //    Bullet bullet = new Bullet(LocalPosition.X, LocalPosition.Y, LocalPosition.Z, 0, 0, 0, 100, "Bullet", Shape.CUBE);
             //    bullet.SetScale(50, 50, 50);
             //    currentScene.AddActor(bullet);
-            //    CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
-            //    AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
-            //    bullet.Collider = bulletBoxCollider;
+            //    //CircleCollider bulletCircleCollider = new CircleCollider(5, bullet);
+            //    //AABBCollider bulletBoxCollider = new AABBCollider(10, 10, bullet);
+            //    //bullet.Collider = bulletBoxCollider;
 
             //}
 
@@ -95,10 +95,10 @@ namespace MathForGames
 
             Velocity = moveDirection.Normalized * Speed * deltaTime;
 
-            //if (Velocity.Magnitude > 0)
-            //   Forward = Velocity.Normalized;
+            if (Velocity.Magnitude > 0)
+               Forward = Velocity.Normalized;
 
-            Translate(_velocity.X, 0, _velocity.Z);
+            //Translate(_velocity.X, 0, _velocity.Z);
 
             LocalPosition += Velocity;
 

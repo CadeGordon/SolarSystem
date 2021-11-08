@@ -133,8 +133,9 @@ namespace MathForGames
             _scenes[_currentSeneIndex].Update(deltaTime, _scenes[_currentSeneIndex]);
 
             //change the prespective of the camera (example first person)
-            //_camera.target = new System.Numerics.Vector3(_player.WorldPosition.X, _player.WorldPosition.Y, _player.WorldPosition.Z);
-            //_camera.position = new System.Numerics.Vector3(_player.WorldPosition.X, _player.WorldPosition.Y + 10, _player.WorldPosition.Z + 10);
+            _camera.position = new System.Numerics.Vector3(_player.WorldPosition.X, _player.WorldPosition.Y + 15, _player.WorldPosition.Z + 15);
+            _camera.target = new System.Numerics.Vector3(_player.WorldPosition.X, _player.WorldPosition.Y, _player.WorldPosition.Z);
+           
            
             while (Console.KeyAvailable)
                 Console.ReadKey(true);

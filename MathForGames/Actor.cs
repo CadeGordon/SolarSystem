@@ -130,7 +130,7 @@ namespace MathForGames
                     //..convert the world coordiantes into local coordiates and transalte the actor
                     float xOffSet = (value.X - Parent.WorldPosition.X) / new Vector3(GlobalTransform.M00, GlobalTransform.M10, GlobalTransform.M20).Magnitude;
                     float yOffSet = (value.Y - Parent.WorldPosition.Y) / new Vector3(GlobalTransform.M01, GlobalTransform.M11, GlobalTransform.M21).Magnitude;
-                    float zOffSet = (value.Z - Parent.WorldPosition.Y) / new Vector3(GlobalTransform.M02, GlobalTransform.M12, GlobalTransform.M22).Magnitude;
+                    float zOffSet = (value.Z - Parent.WorldPosition.Z) / new Vector3(GlobalTransform.M02, GlobalTransform.M12, GlobalTransform.M22).Magnitude;
                     SetTranslation(xOffSet, yOffSet, zOffSet);
 
                 }
@@ -203,13 +203,13 @@ namespace MathForGames
         {
             get { return new Vector3(_rotation.M02, _rotation.M12, _rotation.M22); }
 
-            //set
-            //{
-            //    Vector3 point = value.Normalized + WorldPosition;
-            //    LookAt(point);
-              
-            //}
-           
+            set
+            {
+                Vector3 point = value.Normalized + WorldPosition;
+                LookAt(point);
+
+            }
+
         }
 
        
@@ -251,7 +251,7 @@ namespace MathForGames
                     break;
                 case Shape.SPHERE:
                     sizeX = new Vector3(GlobalTransform.M00, GlobalTransform.M10, GlobalTransform.M20).Magnitude;
-                    Raylib.DrawSphere(endPos, sizeX, ShapeColor);
+                    Raylib.DrawSphere(startPos, sizeX, ShapeColor);
                     break;
 
                 
@@ -405,7 +405,7 @@ namespace MathForGames
 
             //Create a new matrix with new Axis
             _rotation = new Matrix4(newXAxis.X, newYAxis.X, direction.X, 0,
-                                    newXAxis.Y, newYAxis.Y, direction.Z, 0,
+                                    newXAxis.Y, newYAxis.Y, direction.Y, 0,
                                     newXAxis.Z, newYAxis.Z, direction.Z, 0,
                                     0, 0, 0, 1);
         }
