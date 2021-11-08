@@ -344,16 +344,56 @@ namespace MathForGames
         /// <param name="position">The posittion the actor should be looking towards</param>
         public void LookAt(Vector3 position)
         {
-            //find the direction that the actor should look in
+            //Get the direction for the actor to look in
             Vector3 direction = (position - WorldPosition).Normalized;
 
+            //If the direction has a length of zero..
             if (direction.Magnitude == 0)
+                //...set it to be the deault forward
                 direction = new Vector3(0, 0, 1);
 
+            //Create a vector that points directly upwards
             Vector3 alignAxis = new Vector3(0, 1, 0);
 
+            //Creates two new vectors that will be the new x and why axis
             Vector3 newYAxis = new Vector3(0, 1, 0);
             Vector3 newXAxis = new Vector3(1, 0, 0);
+
+            //If the direction vector is parallel to the aling axis vector...
+            if (Math.Abs(direction.Y) > 0 && direction.X == 0 && direction.Z == 0)
+            {
+                //...set the alignAxis vecto to point to the right
+                alignAxis = new Vector3(1, 0, 0);
+
+                //Get he cross product of the directionand the right to find the new y axis
+                newYAxis = Vector3.CrossProduct(direction, alignAxis);
+                //Normalize the new y axis to prevent the matrix form being scaled
+                newYAxis.Normalize();
+
+                //Get the cross product of the new y axis and fid the direcon of the new x axis
+                newXAxis = Vector3.CrossProduct(newYAxis, direction);
+                //Normalize the new x to prevent the matrix form being scaled
+                newXAxis.Normalize();
+            }
+            //if the direction vector is not parallel
+            else
+            {
+                //Get the cross poduct of the alignAxis and the direction vector
+                newXAxis = Vector3.CrossProduct(alignAxis, direction);
+                //Normalize the newXAxis to prevent out matrix from being scaled
+                newXAxis.Normalize();
+                //Get the cross poduct of the alignAxis and the direction vector
+                newYAxis = Vector3.CrossProduct(direction, newXAxis);
+                //Normalize the newYAxis to prevent out matrix from being scaled
+                newYAxis.Normalize();
+            }
+
+            //Create a new matrix with new Axis
+            _rotation = new Matrix4(newXAxis.X, newYAxis.X, direction.X, 0,
+                                    newXAxis.Y, newYAxis.Y, direction.Z, 0,
+                                    newXAxis.Z, newYAxis.Z, direction.Z, 0,
+                                    0, 0, 0, 1);
+            
 
             
 
